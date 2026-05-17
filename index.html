@@ -17,270 +17,240 @@
     }
     a { color: inherit; text-decoration: none; }
 
-    /* ─── Variables ──────────────────────────────────────────── */
+    /* ─── Design Tokens ──────────────────────────────────────── */
     :root {
-      --accent:   #58A6FF;
-      --accent2:  #3FB950;
-      --purple:   #BC8CFF;
-      --orange:   #F0883E;
-      --bg:       #0D1117;
-      --bg2:      #161B22;
-      --bg3:      #21262D;
-      --border:   #30363D;
-      --text:     #E6EDF3;
-      --muted:    #8B949E;
-      --radius:   12px;
+      --bg:         #0D1117;
+      --bg-2:       #161B22;
+      --bg-3:       #1C2128;
+      --border:     #30363D;
+      --blue:       #58A6FF;
+      --blue-dim:   #1F4E8C;
+      --green:      #3FB950;
+      --purple:     #BC8CFF;
+      --orange:     #FFA657;
+      --text:       #E6EDF3;
+      --muted:      #8B949E;
+      --radius:     10px;
     }
 
     /* ─── Nav ────────────────────────────────────────────────── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(13,17,23,0.85);
+      background: rgba(13, 17, 23, 0.88);
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 2rem;
       display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
+      height: 58px;
     }
-    .nav-brand {
-      color: var(--text); font-weight: 700; font-size: 1rem;
-      letter-spacing: -0.01em;
-    }
-    .nav-brand span { color: var(--accent); }
+    .nav-brand { color: var(--text); font-weight: 700; font-size: 0.95rem; }
     .nav-links { display: flex; gap: 1.5rem; }
     .nav-links a {
-      color: var(--muted); font-size: 0.875rem; font-weight: 500;
-      transition: color 0.2s; position: relative; padding-bottom: 2px;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -2px; left: 0;
-      width: 0; height: 2px; background: var(--accent);
-      transition: width 0.25s;
+      color: var(--muted); font-size: 0.85rem; font-weight: 500;
+      transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
-    .nav-links a:hover::after { width: 100%; }
 
     /* ─── Hero ───────────────────────────────────────────────── */
     .hero {
-      background: var(--bg);
-      background-image:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(88,166,255,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(188,140,255,0.06) 0%, transparent 50%);
-      color: var(--text);
       padding: 5.5rem 2rem 4.5rem;
       text-align: center;
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(88,166,255,0.12), transparent);
+      border-bottom: 1px solid var(--border);
     }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 0.4rem;
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.45rem;
       background: rgba(88,166,255,0.1);
       border: 1px solid rgba(88,166,255,0.25);
-      color: var(--accent);
-      font-size: 0.75rem; font-weight: 600;
+      color: var(--blue);
+      font-size: 0.76rem; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.35rem 1rem; border-radius: 999px;
+      padding: 0.3rem 0.9rem; border-radius: 999px;
       margin-bottom: 1.5rem;
     }
-    .hero-tag::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.3; }
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.55; transform: scale(0.8); }
     }
     .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.25rem);
-      font-weight: 800; letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 700; margin-bottom: 0.6rem;
       background: linear-gradient(135deg, #E6EDF3 0%, #8B949E 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .hero-sub {
-      color: var(--accent); font-size: 1rem; font-weight: 600;
-      letter-spacing: 0.04em; margin-bottom: 1rem;
+      color: var(--muted); font-size: 1.05rem;
+      max-width: 520px; margin: 0 auto 2.25rem;
     }
-    .hero p {
-      color: var(--muted); font-size: 1.05rem; max-width: 520px;
-      margin: 0 auto 2.25rem;
-    }
-    .btn-group { display: flex; gap: 0.875rem; justify-content: center; flex-wrap: wrap; }
+    .btn-row { display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap; }
     .btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.7rem 1.5rem; border-radius: 8px;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.6rem 1.3rem; border-radius: 8px;
       font-size: 0.875rem; font-weight: 600;
-      transition: all 0.2s;
-      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      cursor: pointer; border: 1px solid transparent;
     }
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
     .btn-primary {
-      background: var(--accent); color: #0D1117;
-      box-shadow: 0 0 0 0 rgba(88,166,255,0);
+      background: var(--blue-dim);
+      border-color: var(--blue);
+      color: var(--blue);
     }
-    .btn-primary:hover {
-      background: #79BFFF;
-      box-shadow: 0 4px 20px rgba(88,166,255,0.35);
-      transform: translateY(-1px);
-    }
-    .btn-outline {
-      background: transparent; color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-outline:hover {
-      border-color: var(--accent); color: var(--accent);
-      transform: translateY(-1px);
+    .btn-primary:hover { box-shadow: 0 0 20px rgba(88,166,255,0.25); }
+    .btn-ghost {
+      background: var(--bg-2);
+      border-color: var(--border);
+      color: var(--text);
     }
 
     /* ─── Section Wrapper ────────────────────────────────────── */
-    section { padding: 4.5rem 2rem; }
-    .container { max-width: 1000px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--accent);
-      margin-bottom: 0.5rem;
+    section { padding: 4rem 2rem; }
+    .container { max-width: 980px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 0.4rem;
     }
     .section-title {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 800; letter-spacing: -0.02em;
-      color: var(--text); margin-bottom: 0.5rem;
+      font-size: clamp(1.4rem, 3vw, 1.85rem);
+      font-weight: 700; color: var(--text); margin-bottom: 0.45rem;
     }
-    .section-sub {
-      color: var(--muted); font-size: 0.95rem;
+    .section-desc {
+      color: var(--muted); font-size: 0.92rem;
       max-width: 520px; margin-bottom: 2.5rem;
     }
 
-    /* ─── Skill Pills ────────────────────────────────────────── */
-    .skills-section {
-      background: var(--bg2);
+    /* ─── Skills strip ───────────────────────────────────────── */
+    .skills-strip {
+      background: var(--bg-2);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+      padding: 2rem;
     }
     .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .pill {
-      background: var(--bg3); border: 1px solid var(--border);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
       color: var(--muted); font-size: 0.78rem; font-weight: 500;
-      padding: 0.3rem 0.85rem; border-radius: 999px;
+      padding: 0.28rem 0.8rem; border-radius: 999px;
       transition: border-color 0.2s, color 0.2s;
     }
-    .pill:hover { border-color: var(--accent); color: var(--accent); }
+    .pill:hover { border-color: var(--blue); color: var(--text); }
 
-    /* ─── Project Cards ──────────────────────────────────────── */
+    /* ─── Cards ──────────────────────────────────────────────── */
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
       gap: 1.25rem;
     }
     .card {
-      background: var(--bg2);
+      background: var(--bg-2);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.5rem;
+      padding: 1.4rem;
       display: flex; flex-direction: column;
-      transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
-      position: relative; overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
     }
-    .card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--card-accent, var(--accent)), transparent);
-      opacity: 0; transition: opacity 0.25s;
+    .card:hover {
+      border-color: rgba(88,166,255,0.4);
+      box-shadow: 0 0 24px rgba(88,166,255,0.07);
+      transform: translateY(-2px);
     }
-    .card:hover { border-color: var(--card-accent, var(--accent)); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
-    .card:hover::before { opacity: 1; }
-
-    .card-badge {
+    .badge {
       display: inline-block;
       font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 0.22rem 0.65rem; border-radius: 999px;
-      margin-bottom: 1rem; width: fit-content;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 0.18rem 0.65rem; border-radius: 999px;
+      margin-bottom: 0.9rem; width: fit-content;
     }
-    .badge-auto { background: rgba(88,166,255,0.12); color: var(--accent);  border: 1px solid rgba(88,166,255,0.25); }
-    .badge-ml   { background: rgba(63,185,80,0.12);  color: var(--accent2); border: 1px solid rgba(63,185,80,0.25); }
-    .badge-nlp  { background: rgba(188,140,255,0.12);color: var(--purple);  border: 1px solid rgba(188,140,255,0.25); }
-    .badge-llm  { background: rgba(240,136,62,0.12); color: var(--orange);  border: 1px solid rgba(240,136,62,0.25); }
+    .badge-auto   { background: rgba(88,166,255,0.14);  color: var(--blue);   border: 1px solid rgba(88,166,255,0.3); }
+    .badge-ml     { background: rgba(63,185,80,0.12);   color: var(--green);  border: 1px solid rgba(63,185,80,0.3); }
+    .badge-nlp    { background: rgba(188,140,255,0.12); color: var(--purple); border: 1px solid rgba(188,140,255,0.3); }
+    .badge-llm    { background: rgba(255,166,87,0.12);  color: var(--orange); border: 1px solid rgba(255,166,87,0.3); }
 
-    .card-auto { --card-accent: var(--accent); }
-    .card-ml   { --card-accent: var(--accent2); }
-    .card-nlp  { --card-accent: var(--purple); }
-    .card-llm  { --card-accent: var(--orange); }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+    .card p  { font-size: 0.845rem; color: var(--muted); flex: 1; margin-bottom: 0.9rem; }
 
-    .card h3 { font-size: 0.975rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
-    .card p  { font-size: 0.858rem; color: var(--muted); flex: 1; margin-bottom: 1rem; }
-
-    .card-output {
-      background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 6px; padding: 0.6rem 0.85rem; margin-bottom: 1rem;
+    .card-stat {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.55rem 0.85rem;
       font-size: 0.78rem; color: var(--muted);
-      font-family: 'Courier New', monospace;
+      margin-bottom: 0.9rem;
     }
-    .card-output span { color: var(--text); font-weight: 600; }
+    .card-stat span { font-weight: 600; color: var(--text); }
 
-    .tag-list { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.9rem; }
     .tag {
       font-size: 0.7rem; font-weight: 500;
-      background: var(--bg3); color: var(--muted);
+      background: var(--bg-3); color: var(--muted);
       border: 1px solid var(--border);
-      padding: 0.18rem 0.5rem; border-radius: 4px;
+      padding: 0.18rem 0.52rem; border-radius: 4px;
     }
-    .card-link {
-      font-size: 0.82rem; font-weight: 600; color: var(--accent);
-      display: inline-flex; align-items: center; gap: 0.3rem;
-      margin-top: auto; transition: gap 0.2s, opacity 0.2s;
-    }
-    .card-link:hover { gap: 0.55rem; opacity: 0.8; }
 
-    /* ─── Hire Me Banner ─────────────────────────────────────── */
-    .hire-section {
-      background: var(--bg2);
+    .card-link {
+      font-size: 0.8rem; font-weight: 600; color: var(--blue);
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      margin-top: auto; transition: gap 0.2s;
+    }
+    .card-link:hover { gap: 0.52rem; }
+    .card-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ─── Alt section bg ─────────────────────────────────────── */
+    .alt-bg {
+      background: var(--bg-2);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+    }
+
+    /* ─── CTA Banner ─────────────────────────────────────────── */
+    .cta-section {
       text-align: center;
+      padding: 4.5rem 2rem;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
     }
-    .hire-section h2 {
-      font-size: 1.75rem; font-weight: 800;
-      letter-spacing: -0.02em; margin-bottom: 0.75rem;
-      color: var(--text);
-    }
-    .hire-section p { color: var(--muted); max-width: 480px; margin: 0 auto 2rem; font-size: 0.95rem; }
+    .cta-section h2 { font-size: 1.7rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .cta-section p  { color: var(--muted); max-width: 460px; margin: 0 auto 2rem; font-size: 0.92rem; }
 
     /* ─── Contact ────────────────────────────────────────────── */
-    .contact-section { background: var(--bg); }
     .contact-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1rem; margin-top: 2rem;
     }
     .contact-card {
-      background: var(--bg2);
-      border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 1.5rem; text-align: center;
-      transition: border-color 0.2s, transform 0.2s;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem; text-align: center;
+      transition: border-color 0.2s, transform 0.15s;
     }
-    .contact-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .contact-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
-    .contact-label {
-      font-size: 0.7rem; color: var(--muted); font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.1em;
-    }
-    .contact-value { font-size: 0.875rem; font-weight: 600; color: var(--text); margin-top: 0.35rem; }
-
-    /* ─── Divider ────────────────────────────────────────────── */
-    .section-divider {
-      height: 1px; background: var(--border);
-      max-width: 1000px; margin: 0 auto;
-    }
+    .contact-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+    .c-icon  { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .c-label { font-size: 0.7rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; }
+    .c-value { font-size: 0.875rem; font-weight: 600; color: var(--text); margin-top: 0.25rem; }
 
     /* ─── Footer ─────────────────────────────────────────────── */
     footer {
-      background: var(--bg2);
+      background: var(--bg-2);
       border-top: 1px solid var(--border);
-      color: var(--muted); text-align: center;
-      padding: 1.75rem;
-      font-size: 0.8rem;
+      text-align: center; padding: 1.5rem;
+      font-size: 0.78rem; color: var(--muted);
     }
 
     /* ─── Responsive ─────────────────────────────────────────── */
     @media (max-width: 600px) {
+      nav { padding: 0 1.25rem; }
       .nav-links { gap: 1rem; }
-      .hero { padding: 4rem 1.25rem 3.5rem; }
+      .hero { padding: 3.5rem 1.25rem 3rem; }
       section { padding: 3rem 1.25rem; }
     }
   </style>
@@ -289,7 +259,7 @@
 
 <!-- ─── Nav ──────────────────────────────────────────────────── -->
 <nav>
-  <span class="nav-brand">Enzi<span>.</span>dev</span>
+  <span class="nav-brand">Enzi Muzakki</span>
   <div class="nav-links">
     <a href="#automation">Automation</a>
     <a href="#ml">ML Projects</a>
@@ -299,23 +269,23 @@
 
 <!-- ─── Hero ─────────────────────────────────────────────────── -->
 <header class="hero">
-  <div class="hero-tag">Available for Freelance & Remote Work</div>
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Available for Freelance &amp; Remote Work
+  </div>
   <h1>Muhammad Enzi Muzakki</h1>
-  <p class="hero-sub">Data Scientist &amp; ML Engineer</p>
-  <p>
-    I build things that work — web scrapers, data extractors, ML models, and LLM-powered pipelines.
-    Clean output. Fast turnaround. No fuss.
+  <p class="hero-sub">
+    Data Scientist building production ML systems, automation pipelines, and LLM-powered tools. Clean output, fast delivery.
   </p>
-  <div class="btn-group">
-    <a href="mailto:enzi.muzakki@gmail.com" class="btn btn-primary">&#128231; Hire Me</a>
-    <a href="https://github.com/enzeeeh" target="_blank" rel="noopener" class="btn btn-outline">&#128196; GitHub</a>
+  <div class="btn-row">
+    <a href="mailto:enzi.muzakki@gmail.com" class="btn btn-primary">&#128231;&nbsp; Hire Me</a>
+    <a href="https://github.com/enzeeeh" target="_blank" rel="noopener" class="btn btn-ghost">&#128196;&nbsp; GitHub</a>
   </div>
 </header>
 
-<!-- ─── Skills ────────────────────────────────────────────────── -->
-<section class="skills-section">
+<!-- ─── Skills strip ──────────────────────────────────────────── -->
+<div class="skills-strip">
   <div class="container">
-    <p class="section-label">Tools &amp; Technologies</p>
     <div class="pills">
       <span class="pill">Python</span>
       <span class="pill">Selenium</span>
@@ -334,126 +304,107 @@
       <span class="pill">SQL</span>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ─── Data & Automation ─────────────────────────────────────── -->
 <section id="automation">
   <div class="container">
-    <p class="section-label">Freelance Work</p>
+    <p class="section-eyebrow">Freelance Work</p>
     <h2 class="section-title">Data Collection &amp; Automation</h2>
-    <p class="section-sub">
-      Web scraping, PDF extraction, and data entry automation — clean structured output in Excel or CSV, ready for use.
-    </p>
+    <p class="section-desc">Web scraping, PDF extraction, and data entry automation &#8212; clean structured output in Excel or CSV, ready to use.</p>
 
     <div class="cards">
 
-      <!-- Project: TripAdvisor Scraper -->
-      <div class="card card-auto">
-        <span class="card-badge badge-auto card-auto">Web Scraping</span>
-        <h3>TripAdvisor Restaurant Data Scraper</h3>
-        <p>
-          Automated scraper that navigates TripAdvisor restaurant listings, visits each restaurant page, and extracts structured data — name, rating, address, price range, phone, and cuisine type.
-        </p>
-        <div class="card-output">
-          <span>Output:</span> Clean Excel file — NYC restaurant dataset
-        </div>
-        <div class="tag-list">
+      <div class="card">
+        <span class="badge badge-auto">Web Scraping</span>
+        <h3>TripAdvisor Restaurant Scraper</h3>
+        <p>Selenium-based scraper that navigates TripAdvisor, visits each restaurant page, and extracts name, rating, address, price range, phone, and cuisine type.</p>
+        <div class="card-stat"><span>Output:</span> Clean Excel &#8212; NYC restaurant dataset</div>
+        <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">Selenium</span>
           <span class="tag">WebDriver Manager</span>
-          <span class="tag">Excel / openpyxl</span>
+          <span class="tag">openpyxl</span>
           <span class="tag">Logging</span>
         </div>
-        <a href="https://github.com/enzeeeh/data-entry-project" target="_blank" rel="noopener" class="card-link">View on GitHub &#8594;</a>
+        <a href="https://github.com/enzeeeh/data-entry-project" target="_blank" rel="noopener" class="card-link">
+          View on GitHub
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2zm6.854-1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1z"/></svg>
+        </a>
       </div>
 
-      <!-- Project: PDF to Excel -->
-      <div class="card card-auto">
-        <span class="card-badge badge-auto">PDF Extraction</span>
-        <h3>PDF to Excel Data Extraction</h3>
-        <p>
-          Automated extraction of structured tabular data from multi-page PDF documents into clean, formatted Excel spreadsheets — preserving column structure, numeric values, and data hierarchy.
-        </p>
-        <div class="card-output">
-          <span>Output:</span> Structured .xlsx with validated data mapping
-        </div>
-        <div class="tag-list">
+      <div class="card">
+        <span class="badge badge-auto">PDF Extraction</span>
+        <h3>PDF to Excel Extraction</h3>
+        <p>Automated extraction of structured tabular data from multi-page PDFs into clean, formatted Excel spreadsheets &#8212; preserving column structure, numeric values, and data hierarchy.</p>
+        <div class="card-stat"><span>Output:</span> Structured .xlsx with validated mapping</div>
+        <div class="tags">
           <span class="tag">Python</span>
-          <span class="tag">PDF parsing</span>
+          <span class="tag">PDF Parsing</span>
           <span class="tag">Pandas</span>
           <span class="tag">openpyxl</span>
         </div>
-        <a href="https://github.com/enzeeeh/data-entry-project" target="_blank" rel="noopener" class="card-link">View on GitHub &#8594;</a>
+        <a href="https://github.com/enzeeeh/data-entry-project" target="_blank" rel="noopener" class="card-link">
+          View on GitHub
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2zm6.854-1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1z"/></svg>
+        </a>
       </div>
 
-      <!-- Project: PDF to Word -->
-      <div class="card card-auto">
-        <span class="card-badge badge-auto">Document Conversion</span>
+      <div class="card">
+        <span class="badge badge-auto">Document Conversion</span>
         <h3>PDF to Word Conversion</h3>
-        <p>
-          Accurate conversion of PDF documents to editable Word format (.docx), preserving layout, paragraph structure, and content integrity — suitable for documents that require further editing or annotation.
-        </p>
-        <div class="card-output">
-          <span>Output:</span> Editable .docx with preserved formatting
-        </div>
-        <div class="tag-list">
+        <p>Accurate PDF-to-docx conversion preserving layout, paragraph structure, and content integrity &#8212; suitable for documents needing further editing or annotation.</p>
+        <div class="card-stat"><span>Output:</span> Editable .docx with preserved formatting</div>
+        <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">python-docx</span>
-          <span class="tag">PDF processing</span>
+          <span class="tag">PDF Processing</span>
         </div>
-        <a href="https://github.com/enzeeeh/data-entry-project" target="_blank" rel="noopener" class="card-link">View on GitHub &#8594;</a>
+        <a href="https://github.com/enzeeeh/data-entry-project" target="_blank" rel="noopener" class="card-link">
+          View on GitHub
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2zm6.854-1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1z"/></svg>
+        </a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ─── Machine Learning ──────────────────────────────────────── -->
-<section id="ml" style="background: var(--bg2); border-top: 1px solid var(--border);">
+<!-- ─── ML Projects ───────────────────────────────────────────── -->
+<section id="ml" class="alt-bg">
   <div class="container">
-    <p class="section-label">Technical Projects</p>
+    <p class="section-eyebrow">Technical Projects</p>
     <h2 class="section-title">Machine Learning &amp; AI</h2>
-    <p class="section-sub">
-      Production ML systems and research projects — fraud detection, NLP, LLM pipelines, and OCR.
-    </p>
+    <p class="section-desc">Production ML systems and research projects &#8212; fraud detection, NLP, LLM pipelines, and anomaly detection.</p>
 
     <div class="cards">
 
-      <!-- Project: Sentiment Analysis -->
-      <div class="card card-nlp">
-        <span class="card-badge badge-nlp">NLP</span>
+      <div class="card">
+        <span class="badge badge-nlp">NLP</span>
         <h3>App Review Sentiment Analysis</h3>
-        <p>
-          Scraped 24,000+ user reviews from 12 Indonesian and global apps on Google Play Store. Trained and compared four classification models — SVM, Random Forest, CNN, and LSTM — to categorise reviews as Positive, Neutral, or Negative.
-        </p>
-        <div class="card-output">
-          <span>Dataset:</span> 24,000+ reviews &middot; 12 apps (Gojek, Shopee, Grab, Netflix, Spotify &amp; more)
-        </div>
-        <div class="tag-list">
+        <p>Scraped 24,000+ reviews from 12 apps on Google Play. Trained and compared four models &#8212; SVM, Random Forest, CNN, LSTM &#8212; for Positive / Neutral / Negative classification.</p>
+        <div class="card-stat"><span>Scale:</span> 24,000+ reviews &#183; 12 apps (Gojek, Shopee, Grab, Netflix, Spotify&#8230;)</div>
+        <div class="tags">
           <span class="tag">Python</span>
-          <span class="tag">google-play-scraper</span>
           <span class="tag">Scikit-learn</span>
           <span class="tag">PyTorch</span>
           <span class="tag">SVM</span>
-          <span class="tag">Random Forest</span>
           <span class="tag">CNN</span>
           <span class="tag">LSTM</span>
           <span class="tag">TF-IDF</span>
         </div>
-        <a href="https://github.com/enzeeeh/dicoding-analisis-sentiment-project" target="_blank" rel="noopener" class="card-link">View on GitHub &#8594;</a>
+        <a href="https://github.com/enzeeeh/dicoding-analisis-sentiment-project" target="_blank" rel="noopener" class="card-link">
+          View on GitHub
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2zm6.854-1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1z"/></svg>
+        </a>
       </div>
 
-      <!-- Project: Fraud Detection -->
-      <div class="card card-ml">
-        <span class="card-badge badge-ml">Anomaly Detection</span>
+      <div class="card">
+        <span class="badge badge-ml">Anomaly Detection</span>
         <h3>Fraud Detection Pipeline</h3>
-        <p>
-          3-stage unsupervised fraud detection pipeline processing 113,000+ ride telemetry records — trip anomaly flagging, user behavioural profiling, and a 4-model ensemble (Isolation Forest, LOF, One-Class SVM, Autoencoder). SHAP explanations and a Streamlit monitoring dashboard for non-technical teams.
-        </p>
-        <div class="card-output">
-          <span>Scale:</span> 113,000+ records &middot; No fraud labels required
-        </div>
-        <div class="tag-list">
+        <p>3-stage unsupervised pipeline over 113,000+ ride telemetry records. 4-model ensemble (Isolation Forest, LOF, One-Class SVM, Autoencoder) with SHAP explanations and a Streamlit monitoring dashboard.</p>
+        <div class="card-stat"><span>Scale:</span> 113,000+ records &#183; No fraud labels required</div>
+        <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">Scikit-learn</span>
           <span class="tag">PyTorch</span>
@@ -462,42 +413,37 @@
           <span class="tag">DuckDB</span>
           <span class="tag">BigQuery</span>
         </div>
-        <a href="https://github.com/enzeeeh" class="card-link">View on GitHub &#8594;</a>
+        <a href="https://github.com/enzeeeh" target="_blank" rel="noopener" class="card-link">
+          View on GitHub
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2zm6.854-1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1z"/></svg>
+        </a>
       </div>
 
-      <!-- Project: RAG Chatbot -->
-      <div class="card card-llm">
-        <span class="card-badge badge-llm">LLM / RAG</span>
+      <div class="card">
+        <span class="badge badge-llm">LLM / RAG</span>
         <h3>Insurance Policy RAG Chatbot</h3>
-        <p>
-          Internal Q&amp;A chatbot for customer service agents combining BM25 keyword matching with semantic vector search across an insurance clause database. Generates grounded LLM answers in Indonesian with traceable clause citations via a FastAPI backend and Streamlit front end.
-        </p>
-        <div class="card-output">
-          <span>Stack:</span> Hybrid retrieval &middot; FastAPI &middot; Streamlit &middot; Indonesian language
-        </div>
-        <div class="tag-list">
+        <p>Q&amp;A chatbot for customer service agents combining BM25 keyword matching with semantic vector search. Generates grounded LLM answers in Indonesian with traceable clause citations via FastAPI + Streamlit.</p>
+        <div class="card-stat"><span>Stack:</span> Hybrid retrieval &#183; FastAPI &#183; Indonesian language</div>
+        <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">BM25</span>
           <span class="tag">Vector Search</span>
           <span class="tag">LLM</span>
           <span class="tag">FastAPI</span>
           <span class="tag">Streamlit</span>
-          <span class="tag">RAG</span>
         </div>
-        <a href="https://github.com/enzeeeh" class="card-link">View on GitHub &#8594;</a>
+        <a href="https://github.com/enzeeeh" target="_blank" rel="noopener" class="card-link">
+          View on GitHub
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2zm6.854-1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1z"/></svg>
+        </a>
       </div>
 
-      <!-- Project: Drug Classification -->
-      <div class="card card-llm">
-        <span class="card-badge badge-llm">LLM Pipeline</span>
+      <div class="card">
+        <span class="badge badge-llm">LLM Pipeline</span>
         <h3>Drug Classification at Scale</h3>
-        <p>
-          Multi-tier AI pipeline classifying 1.6 million raw medical billing records using a cascading LLM provider chain (Ollama, OpenRouter, Groq, NVIDIA NIM) with automatic failover. Produces structured drug pricing analytics across hospitals.
-        </p>
-        <div class="card-output">
-          <span>Scale:</span> 1.6M records &middot; Multi-provider LLM with failover
-        </div>
-        <div class="tag-list">
+        <p>Multi-tier AI pipeline classifying 1.6 million raw medical billing records using a cascading LLM chain (Ollama &#8594; OpenRouter &#8594; Groq &#8594; NVIDIA NIM) with automatic provider failover.</p>
+        <div class="card-stat"><span>Scale:</span> 1.6M records &#183; Multi-provider failover</div>
+        <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">Ollama</span>
           <span class="tag">OpenRouter</span>
@@ -506,50 +452,51 @@
           <span class="tag">Parquet</span>
           <span class="tag">Streamlit</span>
         </div>
-        <a href="https://github.com/enzeeeh" class="card-link">View on GitHub &#8594;</a>
+        <a href="https://github.com/enzeeeh" target="_blank" rel="noopener" class="card-link">
+          View on GitHub
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2zm6.854-1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1z"/></svg>
+        </a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ─── Hire Me ────────────────────────────────────────────────── -->
-<section class="hire-section">
+<!-- ─── CTA ───────────────────────────────────────────────────── -->
+<section class="cta-section">
   <div class="container">
-    <h2>Need data collected, cleaned, or analysed?</h2>
-    <p>
-      I take on freelance projects in web scraping, data entry automation, PDF extraction, and machine learning. Fast turnaround, clean output, clear communication.
-    </p>
-    <div class="btn-group">
-      <a href="mailto:enzi.muzakki@gmail.com" class="btn btn-primary">&#128231; Get in Touch</a>
-      <a href="https://github.com/enzeeeh" target="_blank" rel="noopener" class="btn btn-outline">&#128196; See All Projects</a>
+    <h2>Need data collected, cleaned, or modelled?</h2>
+    <p>I take on freelance projects in web scraping, data entry automation, PDF extraction, and ML. Fast turnaround, clean output, clear communication.</p>
+    <div class="btn-row">
+      <a href="mailto:enzi.muzakki@gmail.com" class="btn btn-primary">&#128231;&nbsp; Get in Touch</a>
+      <a href="https://github.com/enzeeeh" target="_blank" rel="noopener" class="btn btn-ghost">&#128196;&nbsp; All Projects</a>
     </div>
   </div>
 </section>
 
 <!-- ─── Contact ───────────────────────────────────────────────── -->
-<section id="contact" class="contact-section">
+<section id="contact" style="background: var(--bg-2); border-top: 1px solid var(--border); padding: 4rem 2rem;">
   <div class="container">
-    <p class="section-label">Contact</p>
+    <p class="section-eyebrow">Contact</p>
     <h2 class="section-title">Get in Touch</h2>
     <div class="contact-grid">
 
       <a href="mailto:enzi.muzakki@gmail.com" class="contact-card">
-        <div class="contact-icon">&#128231;</div>
-        <div class="contact-label">Email</div>
-        <div class="contact-value">enzi.muzakki@gmail.com</div>
+        <div class="c-icon">&#128231;</div>
+        <div class="c-label">Email</div>
+        <div class="c-value">enzi.muzakki@gmail.com</div>
       </a>
 
       <a href="https://github.com/enzeeeh" target="_blank" rel="noopener" class="contact-card">
-        <div class="contact-icon">&#128196;</div>
-        <div class="contact-label">GitHub</div>
-        <div class="contact-value">github.com/enzeeeh</div>
+        <div class="c-icon">&#128196;</div>
+        <div class="c-label">GitHub</div>
+        <div class="c-value">github.com/enzeeeh</div>
       </a>
 
       <a href="https://www.linkedin.com/in/enzimuzakki/" target="_blank" rel="noopener" class="contact-card">
-        <div class="contact-icon">&#128100;</div>
-        <div class="contact-label">LinkedIn</div>
-        <div class="contact-value">View Profile</div>
+        <div class="c-icon">&#128100;</div>
+        <div class="c-label">LinkedIn</div>
+        <div class="c-value">enzimuzakki</div>
       </a>
 
     </div>
@@ -558,7 +505,7 @@
 
 <!-- ─── Footer ────────────────────────────────────────────────── -->
 <footer>
-  <p>Muhammad Enzi Muzakki — Data Scientist &amp; ML Engineer — Indonesia</p>
+  Muhammad Enzi Muzakki &#8212; Data Scientist &amp; ML Engineer &#8212; Indonesia
 </footer>
 
 </body>
